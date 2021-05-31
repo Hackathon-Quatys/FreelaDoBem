@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class CallToActionButton extends StatelessWidget {
   final String title;
@@ -8,20 +9,25 @@ class CallToActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
-      child: Text(
-        title,
-        style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w800,
-            color: Colors.white
-        ),
-      ),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        double _fontSize = sizingInformation.deviceScreenType == DeviceScreenType.desktop ? 18 : 12;
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+          child: Text(
+            title,
+            style: TextStyle(
+                fontSize: _fontSize,
+                fontWeight: FontWeight.w800,
+                color: Colors.white
+            ),
+          ),
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(10),
+          ),
+        );
+      },
     );
   }
 }
