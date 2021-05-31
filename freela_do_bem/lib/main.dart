@@ -33,6 +33,22 @@ class HomeView extends StatelessWidget {
               child: Row(
                   children: [
                     SiteDetails(),
+                    Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CallToActionButton(
+                              title: "Conheça os Projetos",
+                              color: Color.fromARGB(255, 31, 229, 146),
+                            ),
+                            SizedBox(height: 30,),
+                            CallToActionButton(
+                              title: "Inscreva seu projeto",
+                              color: Colors.blueAccent,
+                            ),
+                          ],
+                        ),
+                    ),
                   ]
               ),
             ),
@@ -62,6 +78,8 @@ class NavBar extends StatelessWidget {
               _NavBarItem(title: "Projetos"),
               SizedBox(width: 60,),
               _NavBarItem(title: "Sobre"),
+              SizedBox(width: 60,),
+              _NavBarItem(title: "Login"),
             ],
           )
         ],
@@ -136,6 +154,30 @@ class SiteDetails extends StatelessWidget {
       ),
     );
   }
+}
 
+class CallToActionButton extends StatelessWidget {
+  final String title;
+  final Color color;
 
+  const CallToActionButton({Key? key, required this.title, required this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w800,
+          color: Colors.white
+        ),
+      ),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(10),
+      ),
+    );
+  }
 }
